@@ -15,9 +15,12 @@ public class Member {
   @Enumerated(EnumType.STRING)  // default = ORDINAL
   @Column(nullable = false, length =45)
   private RoleType roleType;
-  @Column(nullable = false)
-  private Long teamId;
+//  @Column(nullable = false)
+//  private Long teamId;
 
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name="team_id")
+  private Team team;
   public Long getId() {
     return id;
   }
@@ -42,11 +45,21 @@ public class Member {
     this.roleType = roleType;
   }
 
-  public Long getTeamId() {
-    return teamId;
+  public Team getTeam() {
+    return team;
   }
 
-  public void setTeamId(Long teamId) {
-    this.teamId = teamId;
+  public void setTeam(Team team) {
+    this.team = team;
+  }
+
+  @Override
+  public String toString() {
+    return "Member{" +
+        "id=" + id +
+        ", username='" + username + '\'' +
+        ", roleType=" + roleType +
+        ", team=" + team +
+        '}';
   }
 }

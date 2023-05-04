@@ -21,6 +21,15 @@ public class Member {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name="team_id")
   private Team team;
+
+  public Member(){}
+
+  public Member(String username, RoleType roleType, Team team) {
+    this.username = username;
+    this.roleType = roleType;
+    this.team = team;
+  }
+
   public Long getId() {
     return id;
   }
